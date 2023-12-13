@@ -1,5 +1,6 @@
 body{
-    background: grey;
+    background: #333333;
+    margin: 0;
 }
 
 .tiles {
@@ -10,8 +11,9 @@ body{
     gap: 16px;
 }
 
-.tile{
+.tile {
     height: 100px;
-    background: black;
-    border: solid 5px white
+    background: #111111;
+    border: 5px solid #444444;
+    cursor: pointer;
 }
