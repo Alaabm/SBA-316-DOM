@@ -25,15 +25,23 @@ h1{
     color: white;
 }
 
-.flex-ctr {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form {
+    width: 300px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+#name {
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#submit{
+    padding: 5px;
 }
 
 
-
-.tiles {
+.tilesContainer {
     margin: 48px auto;
     width: max-content;
     display: grid;
@@ -46,6 +54,4 @@ h1{
     background: #111111;
     border: 5px solid #444444;
     cursor: pointer;
-    color:black;
-
 }
