@@ -21,7 +21,7 @@ header.textContent = "Game Central";
 
 //h1 complete
 const h1 = document.createElement("h1"); 
-h1.textContent = "Macthing Card Game";
+h1.textContent = "Macthing Card Game!";
 header.appendChild(h1);
 h1.style.color = "teal";
 // console.log(h1);
@@ -34,48 +34,21 @@ mainEl.style.margin = "40px";
 
 
 //Select element id for form
-const userInpuBtn = document.getElementById("name");
-userInpuBtn.setAttribute ("placeholder", "Username");
+const userInput = document.getElementById("nameId");
+userInput.setAttribute ("placeholder", "Username");
+userInput.style.margin = "10px";
 // console.log(userInput);
 
-
 //Select element id for submit button
-const submitBtn = document.getElementById("submit");
-submitBtn.
+const submitBtn = document.getElementById("submitId");
+submitBtn.style.margin = "10px";
 
-
-
-
-const form = document.getElementById("form");
-// form.addEventListener("click", (e) => {
-//     e.preventDefault();
-//     alert(`You submitted: 
-//     ${form.querySelector("input").value}`);
-//     console.log(form);
-// });
-
-// const submitted = document.getElementById("submit");
-// form.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     alert(`You submitted: 
-//     ${form.querySelector("input").value}`);
-//     // console.log(form);
-//     // console.log(submitted);
-// });
-
-
-
-//////////////////////////////////////////
-
-// for (let i = 0; i < tileCount; i++) {
-//     const box = document.createElement("div");
-
-//     // const randomTileColor = Math.floor(Math.random() * colorsArray.length);
-//     box.classList.add("tile");
-//     box.style.backgroundColor = colorsArray[i];
-//     tiles.appendChild(box);
-// console.log(tiles);
-// }
+const playerName = document.getElementById("playerName");
+playerName.style.color = "orange";
+submitBtn.addEventListener("click", () => {
+    const grabUserName = userInput.value;
+    playerName.textContent = grabUserName;
+});
 
 function buildTile(color) {
     const element = document.createElement("div");
@@ -103,7 +76,6 @@ function buildTile(color) {
     return element;
 }
 
-//Building the tiles
 for (let i = 0; i < tileCount; i++) {
     const randomIndex = Math.floor(Math.random() * colorsArray.length);
     const color = colorsArray[randomIndex];
@@ -111,12 +83,15 @@ for (let i = 0; i < tileCount; i++) {
 
     colorsArray.splice(randomIndex, 1);
     tilesContainer.appendChild(tile);
-     console.log(tilesContainer);
 }
 
 
-    // tileCount[i].addEventListener("click", () => {
-    //     tileCount[i].classList.toggle(colorsArray[i]);
-    // })
+console.log(tilesContainer);
 
+let fragment = new DocumentFragment();
+fragment.firstElementChild; // null
 
+let paragraph = document.createElement("p");
+fragment.appendChild(paragraph);
+
+fragment.firstElementChild;
