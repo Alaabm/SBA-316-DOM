@@ -52,26 +52,34 @@ submitBtn.addEventListener("click", () => {
 
 function buildTile(color) {
     const element = document.createElement("div");
+
     element.classList.add("tile");
     element.setAttribute("data-color", color);
+
 
     element.addEventListener("click", () => {
         if (awaitingEndOfTheMove) {
             return;
         }
+
         element.style.backgroundColor = color;
-        element.classList.toggle("active");
-        if (activeTile) {
-            activeTile.classList.remove("active");
+
+        if(!activeTile){
+            activeTile = element;
+
+        
+            return;
         }
-        activeTile = element;
-        activeTile.classList.add("active");
+    
         awaitingEndOfTheMove = true;
         setTimeout(() => {
-            activeTile.classList.remove("active");
-            activeTile = null;
+            element.style.backgroundColor = null;
+            activeTile.style.backgroundColor = null;
+
             awaitingEndOfTheMove = false;
+            activeTile = null;
         }, 1000);
+
     });
     return element;
 }
@@ -86,12 +94,3 @@ for (let i = 0; i < tileCount; i++) {
 }
 
 
-console.log(tilesContainer);
-
-let fragment = new DocumentFragment();
-fragment.firstElementChild; // null
-
-let paragraph = document.createElement("p");
-fragment.appendChild(paragraph);
-
-fragment.firstElementChild;
