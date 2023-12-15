@@ -8,11 +8,6 @@ const tileCount = colorsArray.length;
 //  console.log(colorsArray);//picklist
 
 
- //game state
-let revealedCount = 0; //refers to the number of tiles revealed
-let activeTile = null; //refers to the clicked tile
-let awaitingEndOfTheMove = false; //user to wait for the end of the move for tiles do not match to flip
-
 //header complete
 const header = document.querySelector("header");
 header.textContent = "Game Central";
@@ -50,47 +45,48 @@ submitBtn.addEventListener("click", () => {
     playerName.textContent = grabUserName;
 });
 
+alert("Welcome to Macthing Card Game!");
+
+ //game state
+ let revealedCount = 0; //refers to the number of tiles revealed
+ let activeTile = null; //refers to the clicked tile
+let awaitingEndOfTheMove = false; //refers to whether or not the game is awaiting
+
+
+
 function buildTile(color) {
     const element = document.createElement("div");
-
     element.classList.add("tile");
     element.setAttribute("data-color", color);
-
 
     element.addEventListener("click", () => {
         if (awaitingEndOfTheMove) {
             return;
         }
-
         element.style.backgroundColor = color;
-
-        if(!activeTile){
-            activeTile = element;
-
-        
-            return;
+        element.classList.toggle("active");
+        if (activeTile) {
+            activeTile.classList.remove("active");
         }
-    
+        activeTile = element;
+        activeTile.classList.add("active");
         awaitingEndOfTheMove = true;
         setTimeout(() => {
-            element.style.backgroundColor = null;
-            activeTile.style.backgroundColor = null;
-
-            awaitingEndOfTheMove = false;
+            activeTile.classList.remove("active");
             activeTile = null;
+            awaitingEndOfTheMove = false;
         }, 1000);
-
     });
     return element;
 }
 
+//Building the tiles
 for (let i = 0; i < tileCount; i++) {
     const randomIndex = Math.floor(Math.random() * colorsArray.length);
     const color = colorsArray[randomIndex];
     const tile = buildTile(color);
-
     colorsArray.splice(randomIndex, 1);
     tilesContainer.appendChild(tile);
+     console.log(tilesContainer);
 }
-
 
